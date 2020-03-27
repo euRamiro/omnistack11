@@ -1,6 +1,10 @@
 const knex = require('knex');
-const config = require('../../knexfile');
+const configuration = require('../../knexfile');
 
-const connection = knex(config.development);
+//config recebe caminho de conexão do banco
+// test ou produção
+const config = process.env.NODE_ENV === 'test' ? configuration.test : configuration.development
+
+const connection = knex(config);
 
 module.exports = connection;
